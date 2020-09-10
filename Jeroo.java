@@ -10,7 +10,18 @@ public class Jeroo extends JerooBase {
      */
     public void faceEast()
     {
-
+      if (isFacing(NORTH)) {
+        this.turn(RIGHT);
+      } else {
+        if (isFacing(WEST)) {
+          this.turn(LEFT);
+          this.turn(LEFT);
+        } else {
+          if (isFacing(SOUTH)) {
+            turn(LEFT);
+          }
+        }
+      }
     }
 
     /**
@@ -21,7 +32,21 @@ public class Jeroo extends JerooBase {
      */
     public boolean isLeftBlocked()
     {
-        return false;
+        if (isClear(LEFT)) {
+          this.turn(LEFT);
+          this.hop();
+          if (isClear(AHEAD)) {
+            this.turn(LEFT);
+            this.turn(LEFT);
+            this.hop();
+            this.turn(LEFT);
+            return false;
+          } else {
+            return true;
+          }
+        } else {
+          return true;
+        }
     }
 
     /**
@@ -33,7 +58,28 @@ public class Jeroo extends JerooBase {
      */
     public void findNextDirection()
     {
-
+      if (isFlower(AHEAD)) 
+      {
+        this.hop();
+        this.pick();
+        if (isFlower(LEFT))
+        {
+          this.turn(LEFT);
+          this.hop();
+          this.pick();
+          this.turn(LEFT);
+          this.hop();
+          this.turn(LEFT);
+          this.hop();
+        } else {
+          this.turn(LEFT);
+          this.turn(LEFT);
+          this.hop();
+          this.turn(RIGHT);
+        }
+      } else {
+        this.turn(LEFT);
+      }
     }
 
     /**

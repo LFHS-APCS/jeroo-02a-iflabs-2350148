@@ -12,7 +12,7 @@ public class Main implements Directions {
         new JerooGUI();
         runJerooCode();
 
-    }
+    } 
 
     /**
      * You can change which tests you are running here.
