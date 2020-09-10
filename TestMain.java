@@ -54,21 +54,21 @@ public class TestMain implements Directions
 
         // Case 1: robot is in situation where it is not blocked on left
         Jeroo kim = new Jeroo(3, 4, NORTH, 100);
-        if (kim.isLeftBlocked())  assert(false);
+        assertTrue("should not be blocked on left", !kim.isLeftBlocked());
         assertTrue("should be facing North", kim.isFacing(NORTH));
         assertEquals("should be back to (3, 4)", 3, kim.getY());
         assertEquals("should be back to (3, 4)", 4, kim.getX());
 
         // Case 1: robot is in situation where it is  blocked on left
         Jeroo kim2 = new Jeroo(4, 4, NORTH, 100);
-        if (!kim2.isLeftBlocked())  assert(false);
+        assertTrue("should be blocked on left", kim2.isLeftBlocked());
         assertTrue("should be facing North", kim2.isFacing(NORTH));
         assertEquals("should be back to (4, 4)", 4, kim2.getY());
         assertEquals("should be back to (4, 4)", 4, kim2.getX());
 
         // Case 3: robot is in situation where it is blocked one space away on left
         Jeroo kim3 = new Jeroo(5, 4, NORTH, 100);
-        if (!kim3.isLeftBlocked())  assert(false);
+        assertTrue("should be blocked on left", kim3.isLeftBlocked());
         assertTrue("should be facing North", kim3.isFacing(NORTH));
         assertEquals("should be back to (5, 4)", 5, kim3.getY());
         assertEquals("should be back to (5, 4)", 4, kim3.getX());
