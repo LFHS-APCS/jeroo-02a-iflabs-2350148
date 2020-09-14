@@ -42,6 +42,10 @@ public class Jeroo extends JerooBase {
             this.turn(LEFT);
             return false;
           } else {
+            this.turn(LEFT);
+            this.turn(LEFT);
+            this.hop();
+            this.turn(LEFT);
             return true;
           }
         } else {
@@ -62,15 +66,16 @@ public class Jeroo extends JerooBase {
       {
         this.hop();
         this.pick();
-        if (isFlower(LEFT))
+        if (isFlower(AHEAD))
         {
-          this.turn(LEFT);
           this.hop();
           this.pick();
           this.turn(LEFT);
-          this.hop();
           this.turn(LEFT);
           this.hop();
+          this.hop();
+          this.turn(LEFT);
+
         } else {
           this.turn(LEFT);
           this.turn(LEFT);
@@ -92,7 +97,27 @@ public class Jeroo extends JerooBase {
      */
     public boolean isWayBlocked()
     {
+      if (isWater(AHEAD)) {
+        if (isWater(LEFT)) {
+          if (isWater(RIGHT)) {
+            this.turn(LEFT);
+            this.turn(LEFT);
+            if (isWater(AHEAD)) {
+              return true;
+            } else {
+              this.turn(LEFT);
+              this.turn(LEFT);
+              return true;
+            }
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      } else {
         return false;
+      }
     }
 
 
@@ -100,9 +125,49 @@ public class Jeroo extends JerooBase {
      * Put a flower in each enclosed room on the map that has water on 3 sides (front, left, right) 
      * The Jeroo starts at x = 0 and facing EAST.  Ideally, you should be calling the same helper method many times.
      */
+    void roomCheck() {
+      this.hop();
+      if (isWater(LEFT)) {
+        this.hop();
+        this.turn(LEFT);
+        this.hop();
+        if (isWater(AHEAD)) {
+          if (isWater(RIGHT)) {
+            this.plant();
+            this.turn(LEFT);
+            this.turn(LEFT);
+            this.hop();
+            this.turn(LEFT);
+          } else {
+            this.turn(LEFT);
+            this.turn(LEFT);
+            this.hop();
+            this.turn(LEFT);
+          }
+        } else {
+            this.turn(LEFT);
+            this.turn(LEFT);
+            this.hop();
+            this.turn(LEFT);
+        }
+      } else {
+        ;
+      }
+    }
+    
     public void carpetRoom()
     {
-
+      this.roomCheck();
+      this.roomCheck();
+      this.roomCheck();
+      this.roomCheck();
+      this.roomCheck();
+      this.roomCheck();
+      this.roomCheck();
+      this.roomCheck();
+      this.roomCheck();
+      this.roomCheck();
+      this.roomCheck();
     }
 
 
